@@ -1,0 +1,25 @@
+clear
+%% First assignment
+%% Create the continous time signal
+t = linspace(0, 2, 16000);
+% Constants
+[k_2, k_1, F_0, phi_0] = deal(1000, 0, 0, 0);
+% Instantaneous frrequency
+Omega = @(t) 2*pi*(k_2*t.^2 + k_1*t + F_0);
+%chirp
+x_c = @(Omega) cos(Omega*t + phi_0);
+plot(t, x_c(Omega(t)))
+%% questions
+% Confirmar se esta implementação está certa?
+% Não existe aliasing pois não?
+% o t está bem?
+%%
+sound(x_c(Omega(t)), 8000);
+x = x_c(Omega(t));
+%%
+% OK? Era o que estavamos à espepra
+%%
+% From the script tens
+N=32; spectrogram(x, hann(N), 3*N/4, 4*N, 8000, 'yaxis')
+%% questions
+% No espectograma a relação não devia ser quadratica?
