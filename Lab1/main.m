@@ -36,12 +36,7 @@ spectrogram(y, hann(N), 3*N/4, 4*N, 4000, 'yaxis');
 
 %% Question 3c
 
-for fs = [20,8,4]*1000
-    for f = [1,2,3,4]*1000
-        tt = linspace(0,2,fs);
-        plot(tt,cos(2*pi*f*tt));
-    end
-end
+
 
 %% Question 4
 [r, Fs] = audioread('romanza.wav');
