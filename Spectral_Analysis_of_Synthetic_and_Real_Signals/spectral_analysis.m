@@ -30,20 +30,23 @@ title('Angle')
 xlabel('Frequency')
 ylabel('Angle')
 %% R1d) and R1e)
-% xr = zeros(1, length(dft));  
-% for n = 1:M
-%     sum  = 0;
-%     for k=[5, 10, 26]
-%         sum = sum + dft(k)*exp(1i*2*pi*k*n/M); 
-%     end
-%     xr(n) = (2/M)*sum;    
-% end
-dft(5)
-dft(10)
-dft(26)
-xr_ = @(n) (1/M)*( dft(5)*exp(1i*2*pi*5*n/M) + dft(10)*exp(1i*2*pi*10*n/M) + dft(26)*exp(1i*2*pi*26*n/M) );
-n = linspace(0, M-1, M);
-xr = xr_(n);
+%% Usando do todas
+xr = zeros(1, length(dft));  
+for n = 1:M
+    sum  = 0;
+    for k=[5, 10, 26]
+        sum = sum + dft(k)*exp(1i*2*pi*k*n/M); 
+    end
+    xr(n) = (2/M)*sum;    
+end
+%% Por inspeção das componentes principais
+% dft(5)
+% dft(10)
+% dft(26)
+% xr_ = @(n) (1/M)*( dft(5)*exp(1i*2*pi*5*n/M) + dft(10)*exp(1i*2*pi*10*n/M) + dft(26)*exp(1i*2*pi*26*n/M) );
+% n = linspace(0, M-1, M);
+% xr = xr_(n);
+%% plot
 figure()
 plot(0:M-1, xr)
 hold on
