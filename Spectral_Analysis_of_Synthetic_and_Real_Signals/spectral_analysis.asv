@@ -29,7 +29,7 @@ ylabel('Angle')
 %% By inspection of the main frequencies
 %The frequencies are 5, 10 and 26 [Hz]
 xr = zeros(1, length(dft));  
-frequencies = top_three_frequencies(dft,M); % Gets the frequencias of the 3 main frequencies.
+frequencies = top_three_frequencies(dft,M)
 for n = 1:M
     sum  = 0;
     for k=frequencies
@@ -43,7 +43,7 @@ plot(0:M-1, xr)
 hold on
 plot(0:M-1, x)
 grid on
-title('Signal Reconstruction from  DFT Equations');
+title('Signal Reconstruction from equations');
 legend('Reconstructed Signal', 'Original Signal');
 
 
@@ -53,7 +53,7 @@ plot(0:M-1, ifft(dft))
 hold on
 plot(0:M-1, x)
 grid on
-title('Signal Reconstruction from ifft matLab function');
+title('Signal Reconstruction from matLab');
 legend('Reconstructed Signal', 'Original Signal');
 end
 
