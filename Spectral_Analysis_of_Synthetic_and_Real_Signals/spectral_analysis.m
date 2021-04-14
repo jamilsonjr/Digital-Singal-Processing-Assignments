@@ -1,10 +1,6 @@
-function [] = spectral_analysis(M)
+function [dft] = spectral_analysis(x, M)
 %% R1a)
 % Frequency
-w0 = @(M) 5.2*2*pi/M;
-x_ = @(n) 5*cos(w0(M)*n + 1) + 2*cos(2*w0(M)*n + 2) + 3*cos(5*w0(M)*n + 3);
-n = linspace(0,M-1, M);
-x = x_(n);
 %% R1b)
 figure()
 plot(x)
@@ -30,30 +26,34 @@ title('Angle')
 xlabel('Frequency')
 ylabel('Angle')
 %% R1d) and R1e)
-%% Usando do todas
+%% By inspection of the main frequencies
+%The frequencies are 5, 10 and 26 [Hz]
 xr = zeros(1, length(dft));  
+frequencies = top_three_frequencies(dft,M)
 for n = 1:M
     sum  = 0;
-    for k=[5, 10, 26]
-        sum = sum + dft(k)*exp(1i*2*pi*k*n/M); 
+    for k=frequencies
+        sum = sum + dft(k+1)*exp(1i*2*pi*k*n/M); 
     end
     xr(n) = (2/M)*sum;    
 end
-%% Por inspeção das componentes principais
-% dft(5)
-% dft(10)
-% dft(26)
-% xr_ = @(n) (1/M)*( dft(5)*exp(1i*2*pi*5*n/M) + dft(10)*exp(1i*2*pi*10*n/M) + dft(26)*exp(1i*2*pi*26*n/M) );
-% n = linspace(0, M-1, M);
-% xr = xr_(n);
 %% plot
 figure()
 plot(0:M-1, xr)
 hold on
 plot(0:M-1, x)
 grid on
-title('Signal Reconstruction');
-legend('Reconstructed Signal', 'Original Signal')
-%The frequencies are 5, 10 and 26 [Hz]
+title('Signal Reconstruction from equations');
+legend('Reconstructed Signal', 'Original Signal');
+
+
+%% plot
+figure()
+plot(0:M-1, ifft(dft))
+hold on
+plot(0:M-1, x)
+grid on
+title('Signal Reconstruction from matLab');
+legend('Reconstructed Signal', 'Original Signal');
 end
 

@@ -24,4 +24,5 @@ dft = spectral_analysis(new_signal, M); %% Doent no work well! Why?
 figure()
 plot(0:M-1, ifft(dft))
 %%
+idx_array = top_three_frequencies([1; 1; 2; 2; 3; 3; 4; 4; 5; 5], 10)
 
