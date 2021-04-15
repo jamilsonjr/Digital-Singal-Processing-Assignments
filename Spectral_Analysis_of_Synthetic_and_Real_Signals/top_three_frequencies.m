@@ -9,7 +9,7 @@ function [idx_array] = top_three_frequencies(dft, M)
     sorted_dft = sort(abs(dft(1, :))/M);
     i = 0;
     while(flag <= 3)
-        if(isempty(find(top_three_array == sorted_dft(end-i))))
+        if(isempty(find(top_three_array == sorted_dft(end-i),1)))
             top_three_array(i+1) = sorted_dft(end-i);
             idx = find(abs(dft(1, :))/M == top_three_array(i+1));
             idx_array(flag) = idx(1)-1;
