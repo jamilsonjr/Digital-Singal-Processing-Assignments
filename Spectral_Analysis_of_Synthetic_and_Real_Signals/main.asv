@@ -29,9 +29,9 @@ dft = spectral_analysis(new_signal, M); %% Doent no work well! Why?
 %% Establish an S_threshold
 close all
 dft = fft(r);
-zeros_before = nnz(~abs(dft(:,1)));
+zeros_before = nnz(~dft(:,1));
 dft(abs(dft) < 15) = 0; %% S_threshold the we still hear the word is around 15!
-zeros_after = nnz(~abs(dft(:,1)));
+zeros_after = nnz(~dft(:,1));
 figure()
 plot(0:length(r)-1,abs(dft))
 title('Amplitude of the Voice Signal')
@@ -41,7 +41,6 @@ ylabel('Amplitude')
 r_reconstructed = ifft(dft);
 
 soundsc(r_reconstructed, Fs);
-num_of_discarted_coeff = zeros_after - zeros_before
 
 % Lets spot the difference in the non null values of the vector before and
 % after being cleared by the 
