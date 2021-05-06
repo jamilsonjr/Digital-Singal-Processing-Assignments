@@ -3,7 +3,7 @@
 % Pungo comment we hear the music with noise, like tik tiks. The msuic is a
 % fucking classic! Love it! 
 [y, Fs] = audioread('fugee.wav');
-% sound(y, Fs);
+%  sound(y, Fs);
 %% R1b)Plot the Signal
 % Pungo comment that the noise is in the form of diracs and we see them in
 % the plot
@@ -22,6 +22,4 @@ grid on
 [h, w] = freqz(b, a);
 plot(abs(h));
 %% R2b)
-y_filtered = filter(b,a,y);
-plot(y_filtered);
-sound(y_filtered, Fs);
+y = filter(b,a,y)
