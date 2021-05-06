@@ -21,7 +21,18 @@ grid on
 [b,a] = butter(10, 0.5); 
 [h, w] = freqz(b, a);
 plot(abs(h));
-%% R2b)
+%% R2b) / R2c) % Improve plots
 y_filtered = filter(b,a,y);
 plot(y_filtered);
-sound(y_filtered, Fs);
+figure()
+plot(y);
+hold on
+plot(y_filtered);
+%sound(y_filtered, Fs);
+%% R2d)
+Y_filtered = fft(y_filtered);
+figure()
+semilogy(abs(fftshift(Y))) 
+hold on
+semilogy(abs(fftshift(Y_filtered)))
+grid on
