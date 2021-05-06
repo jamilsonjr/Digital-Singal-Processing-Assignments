@@ -36,3 +36,16 @@ semilogy(abs(fftshift(Y)))
 hold on
 semilogy(abs(fftshift(Y_filtered)))
 grid on
+%% R3a/b) Filtering with a median filter
+figure()
+y_median_filtered = medfilt1(y,3);
+plot(y)
+hold on 
+plot(y_median_filtered);
+%% R3 c)
+Y_filtered_median = fft(y_median_filtered);
+figure()
+semilogy(abs(fftshift(Y))) 
+hold on
+semilogy(abs(fftshift(Y_filtered_median)))
+grid on
