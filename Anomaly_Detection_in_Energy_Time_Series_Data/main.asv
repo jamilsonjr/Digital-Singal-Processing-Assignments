@@ -87,7 +87,7 @@ end
 display(Energy);
 display(a);
 
-%% Part2 Anomaly Detection R2a) & R2b) & R2c)
+%% Part2 Anomaly Detection
 % Load test data
 x_test = load('energy_test.mat');
 x = x_test.x_test;
@@ -119,11 +119,5 @@ for n=1:length(r)
     end
     e(n) = r(n) - r_predicted(n);
 end
-x_new_prediction = x_predicted - r_predicted;
 
-% Calculating anomaly
-anomalies = Anomalies(x, x_predicted); % PUNGO SWITCH BETWEEN: x_predicted e x_new_prediction !!!!!!!! 
-[pks, locs] = findpeaks(anomalies, 'MinPeakDistance', 50, 'MinPeakHeight', 0.1);
-plot(anomalies);
-hold on 
-findpeaks(anomalies, 'MinPeakDistance', 50, 'MinPeakHeight', 0.1);
+x_new_prediction = x_predicted - r_predicted;
