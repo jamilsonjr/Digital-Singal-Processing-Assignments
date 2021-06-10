@@ -66,4 +66,24 @@ ylabel('Probability density');
 legend('Histogram', 'Rayleigh', 'Exponential', 'Normal');
 
 %% R2) Image Segmentation
+%% R2a) Perform the segmentation using the best distribution: Rayleigh
+ice_seg = log(raylpdf(I, ice_rayleigh_params));
+water_seg = log(raylpdf(I, water_rayleigh_params));
+Segmentation = ice_seg > water_seg;
 
+figure;
+imagesc(I);
+hold on 
+contour(logical(Segmentation), 'LineColor', 'r');
+title('Segmentation');
+
+%% R2b) Repeat the previous using patch  
+patch = ones(5);
+ice_with_patch = conv2(log(raylpdf(I, ice_rayleigh_params)), patch, 'same');
+water_with_patch= conv2(log(raylpdf(I, water_rayleigh_params)), patch, 'same');
+Patch_Segmentation = ice_with_patch > water_with_patch;
+figure;
+imagesc(I);
+hold on 
+contour(Patch_Segmentation, 'LineColor', 'r');
+title('Segmentation with Patch');
