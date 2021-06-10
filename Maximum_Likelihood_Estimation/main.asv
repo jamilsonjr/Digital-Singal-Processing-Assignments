@@ -1,0 +1,13 @@
+clear close all clc
+%% Maximum Likelihood Estimation
+%% R1b) Load and Visualize
+img = load('sar_image.mat');
+image = imagesc(img.I);
+title('Synthetic Aperture Radar (SAR)');
+colormap('default');
+%% R1c) Crop the images into ICE and WATER. Estimates the parameter(s) of the given distributions
+I_ice = imcrop(image);
+imagesc(I_ice)
+%%
+I_water = imcrop(im);
+figure, imagesc(I_water)
